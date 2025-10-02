@@ -4,23 +4,28 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
     city: '',
     date: '',
-    people: '1',
-    address: ''
+    people: '1'
   });
+
+  const heroImages = [
+    { src: '/img/75a7501b-cb81-4ee7-b206-7f15e65132f8.jpg', alt: 'Панорама Домбая' },
+    { src: '/img/1105052e-04c0-4574-ab3c-900536dad784.jpg', alt: 'Шоанинский храм' },
+    { src: '/img/7356c587-3891-48e3-a723-88df0ca571f9.jpg', alt: 'Река Уллу-Муруджу' }
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    console.log('Booking:', formData);
   };
 
   const scrollToSection = (id: string) => {
@@ -28,99 +33,176 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/img/c97f09ae-8974-4ad1-b4d7-e83774d0f01b.jpg" 
-            alt="Мечеть Сердце Чечни" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+        <div className="absolute inset-0">
+          {heroImages.map((img, idx) => (
+            <div
+              key={idx}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                idx === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
         </div>
-        
-        <div className="relative z-10 container mx-auto px-4 text-center text-white animate-fade-in">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Экскурсия в Чечню на один день:<br />
-            от великих мечетей до небоскрёбов
+
+        <div className="relative z-10 container mx-auto px-4 text-center text-white">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in leading-tight">
+            Домбай: Путешествие в Сердце Гор из КМВ
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Комфортный тур в мини-группе. Забираем от вашего дома в городах КМВ.<br />
-            Всё самое главное за один день.
+          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto opacity-95">
+            Однодневный тур на высоту 1750 метров. Захватывающие дух пейзажи,<br />
+            древние храмы и чистейший горный воздух.
           </p>
-          
-          <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
+
+          <div className="grid md:grid-cols-5 gap-4 max-w-5xl mx-auto mb-12">
             {[
-              { icon: 'Bus', title: 'Трансфер от дома', desc: 'Заберём и привезём по адресу' },
-              { icon: 'Users', title: 'Группа до 8 человек', desc: 'Индивидуальная атмосфера' },
-              { icon: 'Building', title: 'Вся Чечня за день', desc: 'Главные святыни и архитектура' },
-              { icon: 'Car', title: 'Комфортный транспорт', desc: 'Внедорожник или минивэн' }
+              { icon: 'Clock', label: '10-12 часов', desc: 'Продуманный маршрут' },
+              { icon: 'Car', label: 'Комфортный трансфер', desc: 'От вашего адреса' },
+              { icon: 'User', label: 'Профессиональный гид', desc: 'Полная безопасность' },
+              { icon: 'Mountain', label: 'Невероятные локации', desc: 'От храмов до канатки' },
+              { icon: 'Users', label: 'До 8 человек', desc: 'Малые группы' }
             ].map((item, idx) => (
-              <Card key={idx} className="bg-white/10 backdrop-blur-md border-white/20 text-white">
-                <CardContent className="pt-6 text-center">
-                  <Icon name={item.icon} className="w-10 h-10 mx-auto mb-3" />
-                  <h3 className="font-semibold mb-2">{item.title}</h3>
-                  <p className="text-sm opacity-90">{item.desc}</p>
+              <Card key={idx} className="bg-white/15 backdrop-blur-md border-white/25 text-white hover:bg-white/20 transition-all">
+                <CardContent className="pt-6 pb-4 text-center">
+                  <Icon name={item.icon} className="w-8 h-8 mx-auto mb-2" />
+                  <p className="font-semibold text-sm mb-1">{item.label}</p>
+                  <p className="text-xs opacity-90">{item.desc}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          <div className="flex gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-white px-8"
-              onClick={() => scrollToSection('program')}
-            >
-              Посмотреть программу
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="bg-white/20 backdrop-blur-md border-white/40 text-white hover:bg-white/30"
-              onClick={() => scrollToSection('booking')}
-            >
-              Забронировать место
-            </Button>
+          <Button 
+            size="lg" 
+            className="bg-primary hover:bg-primary/90 text-white px-10 py-6 text-lg font-bold shadow-2xl"
+            onClick={() => scrollToSection('booking')}
+          >
+            Забронировать экскурсию
+          </Button>
+
+          <div className="flex gap-2 justify-center mt-8">
+            {heroImages.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  idx === currentSlide ? 'bg-white w-8' : 'bg-white/50'
+                }`}
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="program" className="py-20 bg-muted/30">
+      <section className="py-20 bg-gradient-to-b from-white to-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            Маршрут путешествия
+            Ваш день в Домбае
           </h2>
           <p className="text-xl text-center text-muted-foreground mb-16">
-            от завтрака до самой большой мечети Европы
+            Детальная программа путешествия с временной шкалой
           </p>
 
-          <div className="max-w-4xl mx-auto space-y-6">
+          <div className="max-w-5xl mx-auto space-y-8">
             {[
-              { time: '06:00 - 08:00', title: 'Сбор группы и трансфер', desc: 'Вас забирают от указанного адреса. Комфортная дорога по живописным предгорьям Кавказа.', icon: 'MapPin' },
-              { time: '08:00 - 09:00', title: 'Завтрак', desc: 'Остановка в дорожном кафе для полноценного завтрака (оплачивается отдельно).', icon: 'Coffee' },
-              { time: '09:30 - 10:30', title: 'Магас: Башня Согласия', desc: 'Знакомство с новой столицей Ингушетии и фото на фоне уникальной башни в стиле хай-тек.', icon: 'Building2' },
-              { time: '11:00 - 13:30', title: 'Грозный: "Сердце Чечни"', desc: 'Посещение одной из самых величественных мечетей мира. Осмотр православного храма Михаила Архангела.', icon: 'Church' },
-              { time: '13:30 - 14:30', title: 'Обед (по желанию)', desc: 'Возможность попробовать блюда национальной кухни в кафе Грозного.', icon: 'UtensilsCrossed' },
-              { time: '14:30 - 15:30', title: '"Грозный Сити"', desc: 'Подъем на смотровую площадку (доп. расход 200 руб.). Панорамные виды на город и мечеть.', icon: 'Building' },
-              { time: '16:00 - 16:45', title: 'Аргун: "Сердце Матери"', desc: 'Посещение ультрасовременной мечети, поражающей своим футуристическим дизайном.', icon: 'Heart' },
-              { time: '17:30 - 18:30', title: 'Шали: "Гордость Мусульман"', desc: 'Финальный аккорд — самая большая мечеть в Европе, впечатляющая своими масштабами.', icon: 'Star' },
-              { time: '18:30', title: 'Возвращение домой', desc: 'Выезд в сторону КМВ. Прибытие к вашим адресам поздно вечером.', icon: 'Home' }
+              {
+                time: '06:00 - 07:00',
+                title: 'Ранний выезд',
+                desc: 'Встреча с гидом, комфортабельный внедорожник или минивэн забирает вас прямо от дома. Начинаем наше путешествие.',
+                icon: 'Sunrise',
+                color: 'bg-orange-500'
+              },
+              {
+                time: '07:30',
+                title: 'Перевал Гум-Баши',
+                subtitle: 'Панорама Главного Кавказского Хребта',
+                desc: 'Первая и незабываемая остановка на высоте. С идеальной смотровой площадки вам откроется величественный вид на Эльбрус и весь Кавказский хребет как на ладони.',
+                icon: 'Mountain',
+                color: 'bg-primary',
+                img: '/img/75a7501b-cb81-4ee7-b206-7f15e65132f8.jpg'
+              },
+              {
+                time: '08:30',
+                title: 'Сырные пещеры',
+                subtitle: 'Самая необычная фотолокация',
+                desc: 'Причудливые скальные образования, которые действительно напоминают гигантский сыр «Маасдам» с его крупными дырками. Идеально для креативных фото!',
+                icon: 'Camera',
+                color: 'bg-gold'
+              },
+              {
+                time: '09:30',
+                title: 'Шоанинский храм',
+                subtitle: 'Прикосновение к истории X века',
+                desc: 'Древний христианский храм на вершине горы Шоана. Место с мощной энергетикой и историей. Возможность поставить свечку, ударить в колокол и насладиться невероятным видом.',
+                icon: 'Church',
+                color: 'bg-secondary',
+                img: '/img/1105052e-04c0-4574-ab3c-900536dad784.jpg'
+              },
+              {
+                time: '10:30',
+                title: 'Окрестности Теберды',
+                subtitle: 'Дорога через сказочный лес',
+                desc: 'Путь через живописнейшую дорогу, пролегающую по дну огромной межгорной котловины. Склоны, покрытые густым хвойным лесом.',
+                icon: 'Trees',
+                color: 'bg-green-700'
+              },
+              {
+                time: '11:30',
+                title: 'Река Уллу-Муруджу',
+                subtitle: 'Сила и чистота горной воды',
+                desc: 'Одна из самых чистых рек России. Бирюзовые воды, рожденные в ледниках, обладают целебными свойствами благодаря природным залежам серебра.',
+                icon: 'Waves',
+                color: 'bg-turquoise',
+                img: '/img/7356c587-3891-48e3-a723-88df0ca571f9.jpg'
+              },
+              {
+                time: '12:30 - 16:00',
+                title: 'Курорт Домбай',
+                subtitle: 'Свобода и полет над облаками',
+                desc: 'Кульминация путешествия! Канатные дороги над тайгой, прогулка по поселку, обед в кафе (доп. оплата), покупка сувениров. Свободное время для ваших впечатлений.',
+                icon: 'Cable',
+                color: 'bg-blue-600'
+              },
+              {
+                time: '16:00',
+                title: 'Возвращение домой',
+                desc: 'Выезд обратно на КМВ. Прибытие к вашим адресам вечером.',
+                icon: 'Home',
+                color: 'bg-purple-600'
+              }
             ].map((item, idx) => (
-              <Card key={idx} className="hover:shadow-lg transition-shadow">
-                <CardContent className="flex gap-6 pt-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Icon name={item.icon} className="w-6 h-6 text-primary" />
+              <div key={idx} className="relative flex gap-6 group">
+                <div className="flex-shrink-0 flex flex-col items-center">
+                  <div className={`w-16 h-16 rounded-full ${item.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform`}>
+                    <Icon name={item.icon} className="w-8 h-8" />
+                  </div>
+                  {idx < 7 && <div className="w-1 h-full bg-gradient-to-b from-primary/30 to-transparent mt-2"></div>}
+                </div>
+
+                <Card className="flex-1 hover:shadow-xl transition-shadow">
+                  <CardContent className="pt-6">
+                    <div className="flex flex-col md:flex-row gap-6">
+                      <div className="flex-1">
+                        <div className="text-sm font-bold text-primary mb-2">{item.time}</div>
+                        <h3 className="text-2xl font-bold mb-1">{item.title}</h3>
+                        {item.subtitle && (
+                          <p className="text-lg text-gold font-semibold mb-3">{item.subtitle}</p>
+                        )}
+                        <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                      </div>
+                      {item.img && (
+                        <div className="md:w-64 h-48 rounded-lg overflow-hidden flex-shrink-0">
+                          <img src={item.img} alt={item.title} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+                        </div>
+                      )}
                     </div>
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-semibold text-secondary mb-1">{item.time}</div>
-                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.desc}</p>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -128,30 +210,33 @@ const Index = () => {
 
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            Узнайте стоимость из вашего города
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+            Стоимость и условия
           </h2>
-          
-          <div className="max-w-3xl mx-auto mt-12">
-            <Card>
-              <CardContent className="pt-6">
+
+          <div className="max-w-4xl mx-auto">
+            <Card className="mb-8 overflow-hidden">
+              <div className="bg-gradient-to-r from-primary to-turquoise p-6 text-white">
+                <h3 className="text-2xl font-bold text-center">Стоимость экскурсии с человека</h3>
+              </div>
+              <CardContent className="pt-8">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b">
-                      <th className="text-left py-4 font-semibold">Город отправления</th>
-                      <th className="text-right py-4 font-semibold">Стоимость с человека</th>
+                    <tr className="border-b-2 border-primary/20">
+                      <th className="text-left py-4 text-lg font-bold">Город выезда</th>
+                      <th className="text-right py-4 text-lg font-bold">Цена</th>
                     </tr>
                   </thead>
                   <tbody>
                     {[
-                      { city: 'Кисловодск', price: '6 000 руб.' },
-                      { city: 'Ессентуки', price: '5 800 руб.' },
-                      { city: 'Пятигорск', price: '5 700 руб.' },
-                      { city: 'Минеральные Воды', price: '6 000 руб.' }
+                      { city: 'Кисловодск', price: '3 700 руб.' },
+                      { city: 'Ессентуки', price: '3 700 руб.' },
+                      { city: 'Железноводск', price: '4 000 руб.' },
+                      { city: 'Минеральные Воды', price: '4 500 руб.' }
                     ].map((item, idx) => (
-                      <tr key={idx} className="border-b last:border-0">
-                        <td className="py-4">{item.city}</td>
-                        <td className="text-right py-4 font-semibold text-primary">{item.price}</td>
+                      <tr key={idx} className="border-b hover:bg-muted/30 transition-colors">
+                        <td className="py-4 font-medium">{item.city}</td>
+                        <td className="text-right py-4 text-xl font-bold text-primary">{item.price}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -159,188 +244,111 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <div className="grid md:grid-cols-2 gap-6 mt-8">
-              <Card className="bg-primary/5 border-primary/20">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="bg-green-50 border-2 border-primary/30">
                 <CardContent className="pt-6">
-                  <h3 className="font-bold mb-4 flex items-center gap-2">
-                    <Icon name="CheckCircle" className="text-primary" />
-                    Что включено в стоимость
+                  <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-primary">
+                    <Icon name="CheckCircle" className="w-6 h-6" />
+                    Что включено
                   </h3>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-start gap-2">
-                      <Icon name="Check" className="w-4 h-4 text-primary mt-0.5" />
-                      <span>Трансфер от/до вашего адреса</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Icon name="Check" className="w-4 h-4 text-primary mt-0.5" />
-                      <span>Комфортный проезд на внедорожнике/минивэне</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Icon name="Check" className="w-4 h-4 text-primary mt-0.5" />
-                      <span>Сопровождение профессионального гида</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Icon name="Check" className="w-4 h-4 text-primary mt-0.5" />
-                      <span>Все экскурсии по программе</span>
-                    </li>
+                  <ul className="space-y-3">
+                    {[
+                      'Трансфер от/до вашего адреса в городах КМВ',
+                      'Услуги профессионального гида-водителя',
+                      'Транспорт на комфортабельном внедорожнике/минивэне',
+                      'Все остановки и экскурсии по программе'
+                    ].map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <Icon name="Check" className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-sm">{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
 
-              <Card className="bg-muted/30">
+              <Card className="bg-amber-50 border-2 border-gold/30">
                 <CardContent className="pt-6">
-                  <h3 className="font-bold mb-4 flex items-center gap-2">
-                    <Icon name="Info" className="text-muted-foreground" />
+                  <h3 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: '#FFD700' }}>
+                    <Icon name="AlertCircle" className="w-6 h-6" />
                     Оплачивается отдельно
                   </h3>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-start gap-2">
-                      <Icon name="Circle" className="w-4 h-4 text-muted-foreground mt-0.5" />
-                      <span>Питание (завтрак, обед) — от 500 руб.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Icon name="Circle" className="w-4 h-4 text-muted-foreground mt-0.5" />
-                      <span>Смотровая площадка «Грозный Сити» — 200 руб.</span>
-                    </li>
+                  <ul className="space-y-3">
+                    {[
+                      'Канатная дорога на Домбае (от ~600 руб./чел.)',
+                      'Питание (обед в кафе)'
+                    ].map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <Icon name="Circle" className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#FFD700' }} />
+                        <span className="text-sm">{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
             </div>
+
+            <Card className="mt-6 bg-blue-50 border-2 border-turquoise/30">
+              <CardContent className="pt-6">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-turquoise">
+                  <Icon name="Info" className="w-6 h-6" />
+                  Важная информация
+                </h3>
+                <div className="grid md:grid-cols-3 gap-4 text-sm">
+                  <div className="flex items-start gap-2">
+                    <Icon name="Users" className="w-5 h-5 text-turquoise flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold">Размер группы</p>
+                      <p className="text-muted-foreground">до 8 человек</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Icon name="Clock" className="w-5 h-5 text-turquoise flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold">Длительность</p>
+                      <p className="text-muted-foreground">10-12 часов</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Icon name="Backpack" className="w-5 h-5 text-turquoise flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold">Возьмите с собой</p>
+                      <p className="text-muted-foreground">Удобную обувь, куртку, воду</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            Один день — миллион впечатлений
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <div className="md:col-span-2 relative h-80 rounded-lg overflow-hidden group">
-              <img 
-                src="/img/c97f09ae-8974-4ad1-b4d7-e83774d0f01b.jpg" 
-                alt="Мечеть Сердце Чечни" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                <h3 className="text-white text-2xl font-bold">Мечеть "Сердце Чечни"</h3>
-              </div>
-            </div>
-            <div className="relative h-80 rounded-lg overflow-hidden group">
-              <img 
-                src="/img/c9e3d576-0dc8-4fee-8167-33625ce654d2.jpg" 
-                alt="Грозный Сити" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                <h3 className="text-white text-xl font-bold">Грозный Сити</h3>
-              </div>
-            </div>
-            <div className="relative h-80 rounded-lg overflow-hidden group">
-              <img 
-                src="/img/e7c6e25d-f24c-4dba-9de4-111849e938a9.jpg" 
-                alt="Комфортный транспорт" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                <h3 className="text-white text-xl font-bold">Комфортный минивэн</h3>
-              </div>
-            </div>
-            <div className="md:col-span-2 relative h-80 rounded-lg overflow-hidden group">
-              <img 
-                src="/img/c9e3d576-0dc8-4fee-8167-33625ce654d2.jpg" 
-                alt="Панорама города" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                <h3 className="text-white text-2xl font-bold">Виды Грозного</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            Важно знать перед бронированием
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {[
-              { icon: 'Users', title: 'Размер группы', desc: 'до 8 человек. Это гарантирует комфорт и индивидуальный подход.' },
-              { icon: 'Car', title: 'Транспорт', desc: 'Вместительный внедорожник или минивэн с кондиционером.' },
-              { icon: 'Backpack', title: 'Что взять с собой', desc: 'Паспорт (обязательно!), удобную обувь, воду, деньги на личные расходы.' },
-              { icon: 'Info', title: 'Важно', desc: 'Для посещения мечетей женщинам желательно иметь платок (можно взять на месте).' },
-              { icon: 'Clock', title: 'Продолжительность', desc: 'Весь тур занимает около 15-16 часов.' },
-              { icon: 'Shield', title: 'Безопасность', desc: 'Опытный гид и комфортный маршрут. Все районы безопасны для туристов.' }
-            ].map((item, idx) => (
-              <Card key={idx} className="hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6 text-center">
-                  <Icon name={item.icon} className="w-12 h-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-bold mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            Частые вопросы
-          </h2>
-
-          <div className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-4">
-              {[
-                { q: 'Точно меня заберут от моего адреса?', a: 'Да! Мы осуществляем трансфер по адресу вашего проживания (отель, квартира) в пределах Кисловодска, Ессентуков, Пятигорска и Минеральных Вод.' },
-                { q: 'Нужен ли паспорт?', a: 'Да, оригинал паспорта обязателен для пересечения границы субъектов РФ.' },
-                { q: 'Сколько всего мы проедем за день?', a: 'Общий километраж около 500-600 км. Дорога комфортная, с остановками.' },
-                { q: 'Можно ли с детьми?', a: 'Да, дети от 7 лет допускаются в сопровождении взрослых.' },
-                { q: 'Как происходит оплата?', a: 'Предоплата 50% онлайн для бронирования места, остальное — гиду в день экскурсии.' }
-              ].map((item, idx) => (
-                <AccordionItem key={idx} value={`item-${idx}`}>
-                  <AccordionTrigger className="text-left font-semibold">
-                    {item.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {item.a}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
-
-      <section id="booking" className="py-20 bg-white">
+      <section id="booking" className="py-20 bg-gradient-to-b from-muted/30 to-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            Забронируйте ваше место в мини-группе
+            Забронируйте место в группе
           </h2>
-          <p className="text-center text-muted-foreground mb-12">
+          <p className="text-center text-muted-foreground mb-12 text-lg">
             Заполните форму и мы свяжемся с вами для подтверждения
           </p>
 
-          <Card className="max-w-2xl mx-auto">
-            <CardContent className="pt-6">
+          <Card className="max-w-2xl mx-auto shadow-2xl">
+            <CardContent className="pt-8 pb-8">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Имя и Фамилия *</Label>
+                    <Label htmlFor="name" className="text-base font-semibold">Имя и Фамилия *</Label>
                     <Input 
                       id="name" 
                       required
+                      placeholder="Иван Иванов"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      className="h-12"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Телефон *</Label>
+                    <Label htmlFor="phone" className="text-base font-semibold">Телефон *</Label>
                     <Input 
                       id="phone" 
                       type="tel" 
@@ -348,40 +356,43 @@ const Index = () => {
                       placeholder="+7 (999) 123-45-67"
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      className="h-12"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email" className="text-base font-semibold">Email</Label>
                   <Input 
                     id="email" 
                     type="email"
+                    placeholder="example@mail.ru"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="h-12"
                   />
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="city">Город отправления *</Label>
+                    <Label htmlFor="city" className="text-base font-semibold">Город отправления *</Label>
                     <Select required value={formData.city} onValueChange={(val) => setFormData({...formData, city: val})}>
-                      <SelectTrigger id="city">
+                      <SelectTrigger id="city" className="h-12">
                         <SelectValue placeholder="Выберите город" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="kislovodsk">Кисловодск (6000₽)</SelectItem>
-                        <SelectItem value="essentuki">Ессентуки (5800₽)</SelectItem>
-                        <SelectItem value="pyatigorsk">Пятигорск (5700₽)</SelectItem>
-                        <SelectItem value="minvody">Минеральные Воды (6000₽)</SelectItem>
+                        <SelectItem value="kislovodsk">Кисловодск (3700₽)</SelectItem>
+                        <SelectItem value="essentuki">Ессентуки (3700₽)</SelectItem>
+                        <SelectItem value="zheleznovodsk">Железноводск (4000₽)</SelectItem>
+                        <SelectItem value="minvody">Минеральные Воды (4500₽)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="people">Количество человек *</Label>
+                    <Label htmlFor="people" className="text-base font-semibold">Количество человек *</Label>
                     <Select required value={formData.people} onValueChange={(val) => setFormData({...formData, people: val})}>
-                      <SelectTrigger id="people">
+                      <SelectTrigger id="people" className="h-12">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -394,69 +405,68 @@ const Index = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="date">Предпочтительная дата *</Label>
+                  <Label htmlFor="date" className="text-base font-semibold">Желаемая дата *</Label>
                   <Input 
                     id="date" 
                     type="date" 
                     required
                     value={formData.date}
                     onChange={(e) => setFormData({...formData, date: e.target.value})}
+                    className="h-12"
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="address">Адрес для трансфера</Label>
-                  <Input 
-                    id="address" 
-                    placeholder="Укажите точный адрес или название отеля"
-                    value={formData.address}
-                    onChange={(e) => setFormData({...formData, address: e.target.value})}
-                  />
-                </div>
-
-                <Button type="submit" size="lg" className="w-full">
-                  Забронировать со скидкой 50%
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full h-14 text-lg font-bold bg-gradient-to-r from-primary to-turquoise hover:opacity-90 transition-opacity"
+                >
+                  Отправить заявку
                 </Button>
+
+                <p className="text-xs text-center text-muted-foreground">
+                  Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                </p>
               </form>
             </CardContent>
           </Card>
         </div>
       </section>
 
-      <footer className="bg-foreground text-white py-12">
+      <footer className="bg-gradient-to-r from-primary to-turquoise text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4">Чечня за один день</h3>
-              <p className="text-white/80">Комфортные мини-группы. Вас заберут от дома.</p>
+              <h3 className="text-2xl font-bold mb-4">Экскурсии на Домбай</h3>
+              <p className="text-white/90">Незабываемые путешествия в горы из городов КМВ</p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Контакты</h4>
-              <ul className="space-y-2 text-white/80">
-                <li className="flex items-center gap-2">
-                  <Icon name="Phone" className="w-4 h-4" />
-                  <a href="tel:+79678284699" className="hover:text-white transition-colors">+7 (967) 828-46-99</a>
+              <h4 className="font-bold mb-4 text-lg">Контакты</h4>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-3">
+                  <Icon name="Phone" className="w-5 h-5" />
+                  <a href="tel:+79999999999" className="hover:text-gold transition-colors">+7 (999) 999-99-99</a>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Icon name="Mail" className="w-4 h-4" />
-                  <a href="mailto:info@tour-kmv.ru" className="hover:text-white transition-colors">info@tour-kmv.ru</a>
+                <li className="flex items-center gap-3">
+                  <Icon name="Mail" className="w-5 h-5" />
+                  <a href="mailto:info@dombay-tour.ru" className="hover:text-gold transition-colors">info@dombay-tour.ru</a>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Мы в соцсетях</h4>
+              <h4 className="font-bold mb-4 text-lg">Мы в соцсетях</h4>
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-                  <Icon name="Instagram" className="w-5 h-5" fallback="Share2" />
+                <a href="#" className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                  <Icon name="Instagram" fallback="Share2" className="w-6 h-6" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-                  <Icon name="MessageCircle" className="w-5 h-5" />
+                <a href="#" className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                  <Icon name="MessageCircle" className="w-6 h-6" />
                 </a>
               </div>
             </div>
           </div>
-          <div className="border-t border-white/20 pt-8 text-center text-white/60 text-sm">
-            <p>© Тур в Чечню из КМВ, 2024</p>
+          <div className="border-t border-white/30 pt-6 text-center text-white/80">
+            <p>© Экскурсии на Домбай из КМВ, 2024</p>
           </div>
         </div>
       </footer>

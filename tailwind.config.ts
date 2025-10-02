@@ -63,7 +63,9 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				gold: '#FFD700',
-				turquoise: '#0EA5E9'
+				turquoise: '#0EA5E9',
+				'islamic-green': '#138a5c',
+				'islamic-gold': '#D4AF37'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

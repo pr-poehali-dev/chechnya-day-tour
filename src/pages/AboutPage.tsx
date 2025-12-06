@@ -1,6 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import SEO from '@/components/SEO';
 
 const AboutPage = () => {
   const timeline = [
@@ -58,8 +59,16 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="pt-20">
-      <section className="relative py-32 bg-gradient-to-br from-primary via-primary/90 to-secondary overflow-hidden">
+    <>
+      <SEO
+        title="О курорте Эльбрус: история, география, инфраструктура, как добраться"
+        description="Подробная информация о курорте Эльбрус: история с 1829 года, географическое положение, горнолыжная инфраструктура, климат, маршруты. Как добраться из Москвы, Минеральных Вод."
+        keywords="Эльбрус курорт, история Эльбруса, как добраться до Эльбруса, инфраструктура Эльбруса, канатные дороги Эльбрус, Приэльбрусье"
+        url="https://elbrus-resort.ru/about"
+      />
+
+      <div className="pt-16 md:pt-20">
+      <section className="relative py-20 sm:py-24 md:py-32 bg-gradient-to-br from-primary via-primary/90 to-secondary overflow-hidden">
         <div
           className="absolute inset-0 opacity-30"
           style={{
@@ -69,11 +78,11 @@ const AboutPage = () => {
           }}
         />
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="text-6xl mb-6">⛰️</div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+          <div className="text-5xl sm:text-6xl md:text-7xl mb-4 sm:mb-6">⛰️</div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6">
             Эльбрус — легенда Кавказа
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto px-4">
             Высочайшая вершина России и Европы. Место силы, которое вдохновляет миллионы путешественников.
           </p>
           <div className="mt-6 text-white/80">
@@ -87,7 +96,7 @@ const AboutPage = () => {
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-start">
               <div>
-                <h2 className="text-4xl font-bold text-foreground mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
                   Где находится Эльбрус
                 </h2>
                 <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
@@ -100,7 +109,7 @@ const AboutPage = () => {
                   Отсюда система канатных дорог поднимает туристов до высоты 3800 метров, 
                   открывая доступ к горнолыжным трассам и альпинистским маршрутам.
                 </p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {geography.map((item, idx) => (
                     <div key={idx} className="bg-muted/30 p-4 rounded-lg">
                       <div className="text-sm text-muted-foreground mb-1">{item.label}</div>
@@ -134,7 +143,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-b from-muted/30 to-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-muted/30 to-white dark:from-muted/10 dark:to-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -147,23 +156,23 @@ const AboutPage = () => {
 
           <div className="max-w-5xl mx-auto">
             <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-accent" />
+              <div className="hidden sm:block absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-secondary to-accent" />
               
               <div className="space-y-12">
                 {timeline.map((event, idx) => (
-                  <div key={idx} className="relative pl-24">
-                    <div className="absolute left-0 w-16 h-16 bg-white border-4 border-primary rounded-full flex items-center justify-center shadow-lg">
+                  <div key={idx} className="relative pl-0 sm:pl-24">
+                    <div className="hidden sm:flex absolute left-0 w-16 h-16 bg-white dark:bg-background border-4 border-primary rounded-full items-center justify-center shadow-lg">
                       <Icon name={event.icon} className="w-8 h-8 text-primary" />
                     </div>
                     <Card className="border-2 hover:border-primary transition-all hover:shadow-xl">
                       <CardContent className="p-6">
                         <div className="flex items-start gap-4">
                           <div className="shrink-0">
-                            <div className="text-4xl font-bold text-primary mb-2">{event.year}</div>
+                            <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">{event.year}</div>
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-2xl font-bold text-foreground mb-3">{event.title}</h3>
-                            <p className="text-lg text-foreground mb-3">{event.description}</p>
+                            <h3 className="text-xl sm:text-2xl font-bold mb-3">{event.title}</h3>
+                            <p className="text-sm sm:text-base md:text-lg mb-3">{event.description}</p>
                             <p className="text-muted-foreground">{event.details}</p>
                           </div>
                         </div>
@@ -177,20 +186,20 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-white dark:bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                 Как добраться до Эльбруса
               </h2>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground">
                 Выберите удобный для вас способ путешествия
               </p>
             </div>
 
             <Tabs defaultValue="plane" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-8">
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-8">
                 <TabsTrigger value="plane" className="gap-2">
                   <Icon name="Plane" className="w-4 h-4" />
                   Самолет
@@ -352,6 +361,7 @@ const AboutPage = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

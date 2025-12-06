@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import SEO from '@/components/SEO';
+import WeatherWidget from '@/components/WeatherWidget';
 
 const HomePage = () => {
   const stats = [
@@ -98,7 +99,7 @@ const HomePage = () => {
 
       <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white to-muted/30 dark:from-background dark:to-muted/10">
         <div className="container mx-auto px-4">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
             {stats.map((stat, idx) => (
               <Card key={idx} className="border-2 hover:border-primary transition-all hover:shadow-xl">
                 <CardContent className="pt-6 sm:pt-8 pb-6 sm:pb-8 text-center">
@@ -111,6 +112,9 @@ const HomePage = () => {
                 </CardContent>
               </Card>
             ))}
+            <div className="sm:col-span-2 md:col-span-1">
+              <WeatherWidget />
+            </div>
           </div>
         </div>
       </section>

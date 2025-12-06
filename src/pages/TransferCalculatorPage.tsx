@@ -318,9 +318,9 @@ const TransferCalculatorPage = () => {
                   <div className="text-3xl mb-4">✅</div>
                   <h3 className="font-bold mb-3">Отмена:</h3>
                   <ul className="text-sm space-y-2 text-muted-foreground">
-                    <li>• >24ч: бесплатно</li>
+                    <li>• Более 24ч: бесплатно</li>
                     <li>• 12-24ч: 50%</li>
-                    <li>• <12ч: 100%</li>
+                    <li>• Менее 12ч: 100%</li>
                   </ul>
                 </CardContent>
               </Card>

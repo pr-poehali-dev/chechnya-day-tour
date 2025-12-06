@@ -33,9 +33,11 @@ const MobileMenu = () => {
       ]
     },
     {
-      title: 'Активности',
+      title: 'Чем заняться',
       items: [
-        { path: '/activities', label: 'Чем заняться', icon: 'Compass' },
+        { path: '/activities', label: 'Все активности', icon: 'Compass' },
+        { path: '/activities/jeep-tours', label: 'Джип-туры', icon: 'Truck' },
+        { path: '/activities/horse-riding', label: 'Конные прогулки', icon: 'Horse' },
         { path: '/top-places', label: 'ТОП-5 мест', icon: 'MapPin' },
         { path: '/facts', label: 'Интересные факты', icon: 'Lightbulb' }
       ]

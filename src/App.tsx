@@ -14,9 +14,12 @@ import FactsPage from "@/pages/FactsPage";
 import TopPlacesPage from "@/pages/TopPlacesPage";
 import ContactsPage from "@/pages/ContactsPage";
 import TransferPage from "@/pages/TransferPage";
+import TransferCalculatorPage from "@/pages/TransferCalculatorPage";
 import RestaurantsPage from "@/pages/RestaurantsPage";
 import GalleryPage from "@/pages/GalleryPage";
 import ReviewsPage from "@/pages/ReviewsPage";
+import JeepToursPage from "@/pages/JeepToursPage";
+import HorseRidingPage from "@/pages/HorseRidingPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,10 +37,12 @@ const App = () => (
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/activities" element={<ActivitiesPage />} />
+              <Route path="/activities/jeep-tours" element={<JeepToursPage />} />
+              <Route path="/activities/horse-riding" element={<HorseRidingPage />} />
               <Route path="/hotels" element={<HotelsPage />} />
               <Route path="/facts" element={<FactsPage />} />
               <Route path="/top-places" element={<TopPlacesPage />} />
-              <Route path="/transfer" element={<TransferPage />} />
+              <Route path="/transfer" element={<TransferCalculatorPage />} />
               <Route path="/restaurants" element={<RestaurantsPage />} />
               <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/reviews" element={<ReviewsPage />} />

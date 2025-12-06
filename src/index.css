@@ -15,16 +15,17 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 40% 15%;
 
-    --primary: 210 80% 25%;
+    /* Основные цвета курорта Эльбрус */
+    --primary: 220 70% 32%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 186 70% 50%;
+    --secondary: 174 65% 48%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 20% 96%;
     --muted-foreground: 210 10% 45%;
 
-    --accent: 43 90% 50%;
+    --accent: 23 85% 48%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 70% 50%;
@@ -32,9 +33,16 @@
 
     --border: 210 20% 88%;
     --input: 210 20% 88%;
-    --ring: 210 80% 25%;
+    --ring: 220 70% 32%;
 
     --radius: 0.5rem;
+
+    /* Дополнительные цвета */
+    --forest-green: 155 60% 28%;
+    --stone-gray: 210 10% 45%;
+    --gold-accent: 38 85% 45%;
+    --success-green: 160 80% 40%;
+    --warning-red: 0 70% 55%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;

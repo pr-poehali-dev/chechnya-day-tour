@@ -19,11 +19,11 @@ const Header = () => {
   const navItems = [
     { path: '/', label: 'Главная' },
     { path: '/about', label: 'О курорте' },
-    { path: '/activities', label: 'Активности' },
-    { path: '/hotels', label: 'Отели' },
+    { path: '/activities', label: 'Чем заняться' },
+    { path: '/hotels', label: 'Размещение' },
     { path: '/restaurants', label: 'Рестораны' },
-    { path: '/gallery', label: 'Галерея' },
-    { path: '/reviews', label: 'Отзывы' },
+    { path: '/transfer', label: 'Трансфер' },
+    { path: '/top-places', label: 'ТОП-5 мест' },
     { path: '/contacts', label: 'Контакты' }
   ];
 

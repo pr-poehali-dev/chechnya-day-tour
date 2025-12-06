@@ -15,6 +15,8 @@ import TopPlacesPage from "@/pages/TopPlacesPage";
 import ContactsPage from "@/pages/ContactsPage";
 import TransferPage from "@/pages/TransferPage";
 import RestaurantsPage from "@/pages/RestaurantsPage";
+import GalleryPage from "@/pages/GalleryPage";
+import ReviewsPage from "@/pages/ReviewsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +39,8 @@ const App = () => (
               <Route path="/top-places" element={<TopPlacesPage />} />
               <Route path="/transfer" element={<TransferPage />} />
               <Route path="/restaurants" element={<RestaurantsPage />} />
+              <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/reviews" element={<ReviewsPage />} />
               <Route path="/contacts" element={<ContactsPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

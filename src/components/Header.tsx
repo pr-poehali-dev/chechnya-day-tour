@@ -21,9 +21,9 @@ const Header = () => {
     { path: '/about', label: 'О курорте' },
     { path: '/activities', label: 'Активности' },
     { path: '/hotels', label: 'Отели' },
-    { path: '/facts', label: 'Факты' },
-    { path: '/top-places', label: 'ТОП-5' },
-    { path: '/transfer', label: 'Трансфер' },
+    { path: '/restaurants', label: 'Рестораны' },
+    { path: '/gallery', label: 'Галерея' },
+    { path: '/reviews', label: 'Отзывы' },
     { path: '/contacts', label: 'Контакты' }
   ];
 

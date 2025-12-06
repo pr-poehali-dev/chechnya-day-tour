@@ -47,6 +47,13 @@ const MobileMenu = () => {
         { path: '/restaurants', label: 'Рестораны', icon: 'UtensilsCrossed' },
         { path: '/transfer', label: 'Трансфер', icon: 'Car' }
       ]
+    },
+    {
+      title: 'Сообщество',
+      items: [
+        { path: '/gallery', label: 'Фотогалерея', icon: 'Image' },
+        { path: '/reviews', label: 'Отзывы', icon: 'Star' }
+      ]
     }
   ];
 

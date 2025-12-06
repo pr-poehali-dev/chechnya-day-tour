@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
+import SEO from '@/components/SEO';
 
 const HomePage = () => {
   const stats = [
@@ -38,7 +39,14 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="pt-16 md:pt-20">
+    <>
+      <SEO
+        title="Курорт Эльбрус - Высочайшая вершина Европы 5642 м"
+        description="Всесезонный горный курорт Эльбрус. Горные лыжи, треккинг, восхождения, отели, рестораны. Отдых в Приэльбрусье круглый год. Онлайн бронирование 2024."
+        keywords="Эльбрус, курорт Эльбрус, отдых на Эльбрусе, горные лыжи, Приэльбрусье, горнолыжный курорт, отели Эльбрус, Терскол, Азау"
+        url="https://elbrus-resort.ru"
+      />
+      <div className="pt-16 md:pt-20">
       <section className="relative min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-secondary"
@@ -219,7 +227,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

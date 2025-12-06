@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
+import WeatherWidget from '@/components/WeatherWidget';
 
 const Footer = () => {
   const navLinks = [
@@ -20,7 +21,16 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-muted/30 to-primary/10 border-t">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="mb-8">
+          <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4 text-center">
+            Погода в Терсколе
+          </h3>
+          <div className="max-w-md mx-auto">
+            <WeatherWidget />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-4 gap-8 mb-8 mt-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="text-3xl">⛰️</div>

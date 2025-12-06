@@ -38,6 +38,8 @@ const MobileMenu = () => {
         { path: '/activities', label: 'Все активности', icon: 'Compass' },
         { path: '/activities/jeep-tours', label: 'Джип-туры', icon: 'Truck' },
         { path: '/activities/horse-riding', label: 'Конные прогулки', icon: 'Horse' },
+        { path: '/activities/quad-bikes', label: 'Квадроциклы', icon: 'Bike' },
+        { path: '/activities/trekking', label: 'Треккинг', icon: 'Footprints' },
         { path: '/top-places', label: 'ТОП-5 мест', icon: 'MapPin' },
         { path: '/facts', label: 'Интересные факты', icon: 'Lightbulb' }
       ]

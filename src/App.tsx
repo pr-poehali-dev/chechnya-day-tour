@@ -20,6 +20,8 @@ import GalleryPage from "@/pages/GalleryPage";
 import ReviewsPage from "@/pages/ReviewsPage";
 import JeepToursPage from "@/pages/JeepToursPage";
 import HorseRidingPage from "@/pages/HorseRidingPage";
+import QuadBikesPage from "@/pages/QuadBikesPage";
+import TrekkingPage from "@/pages/TrekkingPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +41,8 @@ const App = () => (
               <Route path="/activities" element={<ActivitiesPage />} />
               <Route path="/activities/jeep-tours" element={<JeepToursPage />} />
               <Route path="/activities/horse-riding" element={<HorseRidingPage />} />
+              <Route path="/activities/quad-bikes" element={<QuadBikesPage />} />
+              <Route path="/activities/trekking" element={<TrekkingPage />} />
               <Route path="/hotels" element={<HotelsPage />} />
               <Route path="/facts" element={<FactsPage />} />
               <Route path="/top-places" element={<TopPlacesPage />} />

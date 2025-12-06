@@ -40,6 +40,22 @@
     <priority>0.8</priority>
   </url>
   
+  <!-- Прокат квадроциклов -->
+  <url>
+    <loc>https://elbrus-resort.ru/activities/quad-bikes</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Треккинг -->
+  <url>
+    <loc>https://elbrus-resort.ru/activities/trekking</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <!-- Отели -->
   <url>
     <loc>https://elbrus-resort.ru/hotels</loc>

@@ -38,8 +38,8 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="pt-20">
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <div className="pt-16 md:pt-20">
+      <section className="relative min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-secondary"
           style={{
@@ -53,50 +53,51 @@ const HomePage = () => {
         
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <div className="mb-6 inline-block animate-fade-in">
-              <div className="text-7xl mb-4">⛰️</div>
+            <div className="mb-4 sm:mb-6 inline-block animate-fade-in">
+              <div className="text-5xl sm:text-6xl md:text-7xl mb-2 sm:mb-4">⛰️</div>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white mb-6 leading-tight tracking-tight animate-fade-in">
-              ВЫСОЧАЙШАЯ ВЕРШИНА<br />ЕВРОПЫ ЖДЕТ ТЕБЯ
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-extrabold text-white mb-4 sm:mb-6 leading-tight tracking-tight animate-fade-in px-4">
+              ВЫСОЧАЙШАЯ ВЕРШИНА<br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>ЕВРОПЫ ЖДЕТ ТЕБЯ
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-4 font-light">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-3 sm:mb-4 font-light px-4">
               Всесезонный горный курорт • 5642 метра • Кавказ
             </p>
-            <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto px-4">
               Покорите легендарный Эльбрус, наслаждайтесь горнолыжными трассами мирового уровня 
               и откройте для себя удивительную природу Приэльбрусья
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link to="/activities">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white px-8 py-6 text-lg">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <Link to="/activities" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-white px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg">
                   <Icon name="Snowflake" className="w-5 h-5 mr-2" />
                   Зимний отдых
                 </Button>
               </Link>
-              <Link to="/activities">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-6 text-lg">
+              <Link to="/activities" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-primary px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg">
                   <Icon name="Sun" className="w-5 h-5 mr-2" />
                   Летние приключения
                 </Button>
               </Link>
             </div>
-            <div className="mt-12 animate-bounce">
+            <div className="mt-8 sm:mt-12 animate-bounce hidden sm:block">
               <Icon name="ChevronDown" className="w-8 h-8 text-white/80 mx-auto" />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-b from-white to-muted/30">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white to-muted/30 dark:from-background dark:to-muted/10">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
             {stats.map((stat, idx) => (
               <Card key={idx} className="border-2 hover:border-primary transition-all hover:shadow-xl">
-                <CardContent className="pt-8 pb-8 text-center">
-                  <Icon name={stat.icon} className="w-16 h-16 text-primary mx-auto mb-4" />
-                  <div className="text-5xl font-extrabold text-primary mb-2">
+                <CardContent className="pt-6 sm:pt-8 pb-6 sm:pb-8 text-center">
+                  <Icon name={stat.icon} className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-primary mx-auto mb-3 sm:mb-4" />
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-2">
                     {stat.number}
-                    {stat.unit && <span className="text-2xl ml-1">{stat.unit}</span>}
+                    {stat.unit && <span className="text-lg sm:text-xl md:text-2xl ml-1">{stat.unit}</span>}
                   </div>
                   <p className="text-muted-foreground font-medium">{stat.label}</p>
                 </CardContent>

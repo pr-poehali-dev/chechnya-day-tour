@@ -1,313 +1,244 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
+import SEO from '@/components/SEO';
 
 const ActivitiesPage = () => {
-  const [activeSeason, setActiveSeason] = useState<'winter' | 'summer'>('winter');
-
-  const winterActivities = [
+  const activities = [
     {
-      icon: 'Ski',
-      title: 'Горные лыжи и сноуборд',
-      subtitle: '35 км подготовленных трасс',
-      description: 'Эльбрус предлагает трассы для всех уровней подготовки: от пологих учебных склонов до экстремальных фрирайд-зон. Сезон катания длится с декабря по май.',
-      highlights: [
-        'Зеленые трассы для начинающих (5)',
-        'Синие трассы среднего уровня (12)',
-        'Красные сложные трассы (8)',
-        'Черные экспертные трассы (3)',
-        'Фрирайд-зоны с целинным снегом',
-        'Прокат оборудования и школа инструкторов'
-      ],
-      price: 'Ски-пасс: от 1500 руб./день',
-      image: 'https://images.unsplash.com/photo-1551524559-8af4e6624178?q=80&w=2052'
-    },
-    {
-      icon: 'Snowflake',
-      title: 'Снегоходы и тюбинг',
-      subtitle: 'Экстрим на снегу',
-      description: 'Прокатитесь на снегоходе по заснеженным склонам Эльбруса или испытайте адреналин на специальных тюбинг-трассах.',
-      highlights: [
-        'Прокат снегоходов с инструктором',
-        'Маршруты разной сложности',
-        'Тюбинг-парк с безопасными трассами',
-        'Групповые и индивидуальные туры',
-        'Фотосессия на фоне гор'
-      ],
-      price: 'от 2500 руб./час',
-      image: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=2070'
-    },
-    {
-      icon: 'Wind',
-      title: 'Зимний треккинг',
-      subtitle: 'Прогулки по зимним горам',
-      description: 'Пешие прогулки на снегоступах по живописным маршрутам Приэльбрусья. Невероятные виды и первозданная природа.',
-      highlights: [
-        'Маршруты для разного уровня подготовки',
-        'Профессиональные гиды',
-        'Прокат снегоступов и треккинговых палок',
-        'Горячий чай на маршруте',
-        'Знакомство с флорой и фауной региона'
-      ],
-      price: 'от 3000 руб./чел',
-      image: 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=80&w=2076'
-    },
-    {
-      icon: 'Waves',
-      title: 'СПА и термальные источники',
-      subtitle: 'Отдых после катания',
-      description: 'После активного дня на склонах расслабьтесь в термальных бассейнах или СПА-центрах отелей.',
-      highlights: [
-        'Термальные источники с целебной водой',
-        'СПА-центры в отелях',
-        'Массаж и wellness-процедуры',
-        'Бани и сауны',
-        'Панорамные виды из бассейнов'
-      ],
-      price: 'от 1000 руб./сеанс',
-      image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=2070'
-    }
-  ];
-
-  const summerActivities = [
-    {
-      icon: 'Mountain',
-      title: 'Восхождение на Эльбрус',
-      subtitle: 'Покорите высочайшую вершину Европы',
-      description: 'Классический альпинистский маршрут на западную вершину (5642 м). Требуется хорошая физическая подготовка и акклиматизация.',
-      highlights: [
-        'Южный маршрут (классический, 5-7 дней)',
-        'Северный маршрут (для опытных, 7-9 дней)',
-        'Профессиональные гиды-альпинисты',
-        'Все необходимое снаряжение',
-        'Проживание в приютах',
-        'Сертификат покорителя Эльбруса'
-      ],
-      price: 'от 40000 руб. программа',
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070'
-    },
-    {
-      icon: 'Hiking',
-      title: 'Треккинг к водопадам',
-      subtitle: 'Однодневные и многодневные походы',
-      description: 'Исследуйте живописные ущелья, посетите водопады Девичьи косы, Азау, прогуляйтесь по Долине Нарзанов.',
-      highlights: [
-        'Водопад Девичьи косы (1-2 часа)',
-        'Водопады Азау (3-4 часа)',
-        'Долина Нарзанов (целый день)',
-        'Озера Донгуз-Орун',
-        'Без специальной подготовки',
-        'Маршруты для семей с детьми'
-      ],
-      price: 'от 1500 руб./чел',
-      image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070'
-    },
-    {
-      icon: 'Cable',
-      title: 'Канатные дороги',
-      subtitle: 'Подъем до 3800 метров',
-      description: 'Современные гондольные подъемники доставят вас на высоту 3800 м, откуда открываются потрясающие виды на Кавказский хребет.',
-      highlights: [
-        'Станция "Азау" → "Старый Кругозор" (3000 м)',
-        'Станция "Мир" (3500 м)',
-        'Станция "Гара-Баши" (3800 м)',
-        'Кафе и смотровые площадки',
-        'Безопасные современные кабины',
-        'Работа в летний сезон'
-      ],
-      price: 'от 1200 руб. туда-обратно',
-      image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070'
-    },
-    {
+      title: 'Джип-туры к Эльбрусу',
+      description: 'Захватывающие поездки к подножию высочайшей вершины Европы через горные перевалы',
+      price: 'от 6000₽',
+      duration: '8-10 часов',
+      groupSize: 'до 6 человек',
+      image: 'https://images.unsplash.com/photo-1533130061792-64b345e4a833?q=80&w=2070',
       icon: 'Truck',
-      title: 'Джип-туры',
-      subtitle: 'Экстремальные маршруты на внедорожниках',
-      description: 'Исследуйте труднодоступные уголки Приэльбрусья на подготовленных внедорожниках с опытными водителями.',
-      highlights: [
-        'Поездка к ледникам',
-        'Заброска к высокогорным озерам',
-        'Панорамные точки для фотосессий',
-        'Пикник на природе',
-        'Безопасные мощные джипы',
-        'Трассы разной сложности'
-      ],
-      price: 'от 5000 руб. за машину',
-      image: 'https://images.unsplash.com/photo-1533577116850-9cc66cad8a9b?q=80&w=2069'
+      color: 'bg-primary',
+      highlights: ['Поляна Нарзанов', 'Чегемские водопады', 'Поляна Азау', 'Вид на Эльбрус']
     },
     {
+      title: 'Автобусные экскурсии по КМВ',
+      description: 'Комфортные поездки по городам-курортам Кавказских Минеральных Вод',
+      price: 'от 2500₽',
+      duration: '6-8 часов',
+      groupSize: 'до 40 человек',
+      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069',
+      icon: 'Bus',
+      color: 'bg-secondary',
+      highlights: ['Пятигорск', 'Ессентуки', 'Железноводск', 'Замок Коварства']
+    },
+    {
+      title: 'Конные прогулки',
+      description: 'Романтические поездки верхом по живописным горным тропам Кавказа',
+      price: 'от 3000₽',
+      duration: '2-4 часа',
+      groupSize: 'до 10 человек',
+      image: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?q=80&w=2071',
+      icon: 'Horse',
+      color: 'bg-accent',
+      highlights: ['Предгорье', 'Альпийские луга', 'Горные реки', 'Фотосессия']
+    },
+    {
+      title: 'Квадроциклы и багги',
+      description: 'Экстремальные покатушки по бездорожью в окрестностях Кисловодска',
+      price: 'от 4500₽',
+      duration: '2-3 часа',
+      groupSize: 'до 8 человек',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070',
       icon: 'Bike',
-      title: 'Велотуризм',
-      subtitle: 'Горные и равнинные маршруты',
-      description: 'Прокат горных велосипедов и организованные велотуры по живописным маршрутам разной сложности.',
-      highlights: [
-        'Прокат профессиональных велосипедов',
-        'Маршруты от 10 до 50 км',
-        'Гиды-велосипедисты',
-        'Защитное снаряжение в комплекте',
-        'Маршруты для новичков и профи',
-        'Сопровождение машиной поддержки'
-      ],
-      price: 'Прокат от 800 руб./день',
-      image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070'
+      color: 'bg-green-600',
+      highlights: ['Бездорожье', 'Горные склоны', 'Адреналин', 'Инструктаж']
     },
     {
-      icon: 'Droplet',
-      title: 'Термальные источники',
-      subtitle: 'Лечебные минеральные воды',
-      description: 'Посетите природные термальные источники с целебной минеральной водой, богатой полезными элементами.',
-      highlights: [
-        'Температура воды 35-45°C',
-        'Лечение кожных заболеваний',
-        'Улучшение кровообращения',
-        'Снятие мышечного напряжения',
-        'Купание на фоне гор',
-        'Организованные туры с трансфером'
-      ],
-      price: 'от 500 руб. вход',
-      image: 'https://images.unsplash.com/photo-1571019613576-2b22c76fd955?q=80&w=2070'
+      title: 'Пешие походы и треккинг',
+      description: 'Организованные походы по самым красивым маршрутам Приэльбрусья',
+      price: 'от 2000₽',
+      duration: '4-6 часов',
+      groupSize: 'до 15 человек',
+      image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070',
+      icon: 'Footprints',
+      color: 'bg-orange-600',
+      highlights: ['Терренкуры', 'Водопады', 'Гора Кольцо', 'Экологические тропы']
+    },
+    {
+      title: 'Экскурсия в Домбай',
+      description: 'Поездка на один из красивейших горнолыжных курортов Кавказа',
+      price: 'от 7500₽',
+      duration: '12-14 часов',
+      groupSize: 'до 6 человек',
+      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070',
+      icon: 'Mountain',
+      color: 'bg-blue-600',
+      highlights: ['Канатная дорога', 'Гора Мусса-Ачитара', 'Горное озеро', 'Обед в кафе']
+    },
+    {
+      title: 'Рафтинг на реке Баксан',
+      description: 'Сплав по горной реке для любителей острых ощущений',
+      price: 'от 5000₽',
+      duration: '3-4 часа',
+      groupSize: 'до 12 человек',
+      image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2032',
+      icon: 'Waves',
+      color: 'bg-cyan-600',
+      highlights: ['Порог II-III', 'Снаряжение', 'Инструктор', 'Безопасность']
+    },
+    {
+      title: 'Полёт на параплане',
+      description: 'Незабываемые виды Кавказских гор с высоты птичьего полёта',
+      price: 'от 8000₽',
+      duration: '30-60 минут',
+      groupSize: 'индивидуально',
+      image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070',
+      icon: 'Plane',
+      color: 'bg-purple-600',
+      highlights: ['Тандем-полёт', 'Инструктор', 'Видеосъёмка', 'Эльбрус с высоты']
+    },
+    {
+      title: 'Винные туры',
+      description: 'Дегустация лучших вин Кавказа с посещением виноделен',
+      price: 'от 4000₽',
+      duration: '5-6 часов',
+      groupSize: 'до 20 человек',
+      image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=2070',
+      icon: 'Wine',
+      color: 'bg-red-600',
+      highlights: ['3-4 винодельни', 'Дегустация', 'Сыры', 'История виноделия']
     }
   ];
-
-  const activities = activeSeason === 'winter' ? winterActivities : summerActivities;
 
   return (
-    <div className="pt-20">
-      <section className="relative py-32 bg-gradient-to-br from-primary to-secondary overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        />
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-            Активный отдых на Эльбрусе
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-10">
-            Выберите сезон и найдите свое приключение
-          </p>
-          
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Button
-              size="lg"
-              onClick={() => setActiveSeason('winter')}
-              className={`px-8 py-6 text-lg ${
-                activeSeason === 'winter'
-                  ? 'bg-white text-primary hover:bg-white/90'
-                  : 'bg-white/20 text-white hover:bg-white/30'
-              }`}
-            >
-              <Icon name="Snowflake" className="w-5 h-5 mr-2" />
-              ЗИМА
-            </Button>
-            <Button
-              size="lg"
-              onClick={() => setActiveSeason('summer')}
-              className={`px-8 py-6 text-lg ${
-                activeSeason === 'summer'
-                  ? 'bg-white text-primary hover:bg-white/90'
-                  : 'bg-white/20 text-white hover:bg-white/30'
-              }`}
-            >
-              <Icon name="Sun" className="w-5 h-5 mr-2" />
-              ЛЕТО
-            </Button>
-          </div>
-        </div>
-      </section>
+    <>
+      <SEO
+        title="Экскурсии и активности в Кисловодске 2024 - цены, бронирование"
+        description="Джип-туры к Эльбрусу от 6000₽, конные прогулки от 3000₽, треккинг, квадроциклы, рафтинг. Организованные экскурсии по КМВ и Кавказу. Онлайн-бронирование, опытные гиды."
+        keywords="экскурсии из Кисловодска, джип-туры Эльбрус, активный отдых КМВ, конные прогулки, треккинг Кавказ, экскурсия в Домбай"
+      />
 
-      <section className="py-20 bg-gradient-to-b from-white to-muted/30">
-        <div className="container mx-auto px-4">
-          <Accordion type="single" collapsible className="max-w-6xl mx-auto space-y-6">
-            {activities.map((activity, idx) => (
-              <AccordionItem key={idx} value={`item-${idx}`} className="border-0">
-                <Card className="border-2 hover:border-primary transition-all overflow-hidden">
-                  <AccordionTrigger className="hover:no-underline">
-                    <CardHeader className="w-full">
-                      <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                          <Icon name={activity.icon} className="w-8 h-8 text-primary" />
-                        </div>
-                        <div className="flex-1 text-left">
-                          <CardTitle className="text-2xl mb-2">{activity.title}</CardTitle>
-                          <p className="text-muted-foreground font-normal">{activity.subtitle}</p>
-                        </div>
-                      </div>
-                    </CardHeader>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <CardContent className="pt-0">
-                      <div className="grid md:grid-cols-2 gap-8">
-                        <div>
-                          <div className="aspect-[4/3] rounded-lg overflow-hidden mb-4">
-                            <img
-                              src={activity.image}
-                              alt={activity.title}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <div className="bg-accent/10 p-4 rounded-lg border-2 border-accent">
-                            <div className="font-bold text-foreground mb-1">Стоимость</div>
-                            <div className="text-2xl font-bold text-accent">{activity.price}</div>
-                          </div>
-                        </div>
-                        <div>
-                          <p className="text-lg text-foreground mb-6 leading-relaxed">
-                            {activity.description}
-                          </p>
-                          <h4 className="font-bold text-lg mb-4">Что включено:</h4>
-                          <ul className="space-y-3">
-                            {activity.highlights.map((highlight, hidx) => (
-                              <li key={hidx} className="flex items-start gap-3">
-                                <Icon name="Check" className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
-                                <span className="text-foreground">{highlight}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <Button className="w-full mt-6 bg-primary hover:bg-primary/90">
-                            <Icon name="Phone" className="w-4 h-4 mr-2" />
-                            Забронировать
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </AccordionContent>
-                </Card>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Icon name="Info" className="w-16 h-16 text-primary mx-auto mb-6" />
-            <h2 className="text-4xl font-bold text-foreground mb-6">
-              Нужна помощь с выбором?
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Свяжитесь с нами, и наши эксперты помогут составить идеальную программу отдыха 
-              с учетом вашего уровня подготовки и предпочтений.
+      <div className="pt-20">
+        <section className="relative py-32 bg-gradient-to-br from-primary to-secondary">
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              Активности и экскурсии
+            </h1>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+              Выберите приключение по душе в Кисловодске и окрестностях
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" className="bg-accent hover:bg-accent/90">
-                <Icon name="Phone" className="w-5 h-5 mr-2" />
-                +7 (866) 388-77-00
-              </Button>
-              <Button size="lg" variant="outline">
-                <Icon name="MessageCircle" className="w-5 h-5 mr-2" />
-                Написать в Telegram
-              </Button>
+          </div>
+        </section>
+
+        <section className="py-16 bg-gradient-to-b from-white to-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {activities.map((activity, idx) => (
+                <Card key={idx} className="h-full flex flex-col border-2 hover:shadow-2xl transition-all hover:border-primary overflow-hidden group">
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={activity.image} 
+                      alt={activity.title} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                    />
+                    <div className={`absolute top-4 left-4 ${activity.color} text-white px-3 py-2 rounded-full flex items-center gap-2`}>
+                      <Icon name={activity.icon} className="w-5 h-5" />
+                      <span className="font-bold">{activity.price}</span>
+                    </div>
+                  </div>
+                  
+                  <CardHeader>
+                    <CardTitle className="text-xl mb-3">{activity.title}</CardTitle>
+                    <p className="text-muted-foreground text-sm">{activity.description}</p>
+                  </CardHeader>
+
+                  <CardContent className="flex-1 flex flex-col">
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm">
+                        <Icon name="Clock" className="w-4 h-4 text-primary" />
+                        <span>{activity.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Icon name="Users" className="w-4 h-4 text-primary" />
+                        <span>{activity.groupSize}</span>
+                      </div>
+                    </div>
+
+                    <div className="mb-4">
+                      <p className="text-sm font-semibold mb-2">Маршрут включает:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {activity.highlights.map((highlight, i) => (
+                          <span key={i} className="text-xs bg-muted px-2 py-1 rounded-full">
+                            {highlight}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mt-auto">
+                      <Button className="w-full bg-primary hover:bg-primary/90">
+                        Забронировать тур
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Почему стоит заказать экскурсию?
+              </h2>
+              <p className="text-lg text-muted-foreground mb-12">
+                Мы организуем незабываемые путешествия по самым красивым местам Кавказа
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="Shield" className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">Безопасность</h3>
+                  <p className="text-muted-foreground">
+                    Опытные гиды, страховка, проверенные маршруты и транспорт
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="Award" className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">Опыт</h3>
+                  <p className="text-muted-foreground">
+                    Более 10 лет работы, тысячи довольных туристов, высокие рейтинги
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="MapPin" className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">Локальные знания</h3>
+                  <p className="text-muted-foreground">
+                    Покажем места, которые не найдёшь в путеводителях
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-12">
+                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-lg px-8">
+                  <Link to="/contacts">
+                    <Icon name="Phone" className="w-5 h-5 mr-2" />
+                    Связаться для консультации
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

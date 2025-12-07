@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
+import SEO from '@/components/SEO';
 
 const ContactsPage = () => {
   const [formData, setFormData] = useState({
@@ -23,41 +24,47 @@ const ContactsPage = () => {
     {
       icon: 'Phone',
       title: 'Телефон',
-      value: '+7 (866) 388-77-00',
-      subtitle: 'Ежедневно 09:00-20:00',
-      link: 'tel:+78663887700'
+      value: '+7 (879) 371-00-00',
+      subtitle: 'Ежедневно 08:00-20:00',
+      link: 'tel:+78793710000'
     },
     {
       icon: 'Mail',
       title: 'Email',
-      value: 'info@elbrus-resort.ru',
-      subtitle: 'Ответим в течение 2 часов',
-      link: 'mailto:info@elbrus-resort.ru'
+      value: 'info@kislovodsk-kmv.ru',
+      subtitle: 'Ответим в течение часа',
+      link: 'mailto:info@kislovodsk-kmv.ru'
     },
     {
       icon: 'MessageCircle',
       title: 'Telegram / WhatsApp',
-      value: '+7 (999) 123-45-67',
-      subtitle: 'Быстрые ответы онлайн',
-      link: 'https://t.me/elbrus_resort'
+      value: '+7 (999) 888-77-66',
+      subtitle: 'Быстрые ответы 24/7',
+      link: 'https://t.me/kislovodsk_kmv'
     },
     {
       icon: 'MapPin',
       title: 'Адрес',
-      value: 'с. Терскол, Эльбрусский район',
-      subtitle: 'Кабардино-Балкария, 361605',
+      value: 'г. Кисловодск, Курортный бульвар, 12',
+      subtitle: 'Ставропольский край, 357700',
       link: '#'
     }
   ];
 
   const emergencyServices = [
     { service: 'МЧС', number: '112', icon: 'AlertCircle' },
-    { service: 'Горноспасатели', number: '+7 (866) 388-XX-XX', icon: 'Mountain' },
-    { service: 'Медпункт Азау', number: '+7 (XXX) XXX-XX-XX', icon: 'HeartPulse' }
+    { service: 'Скорая помощь', number: '103', icon: 'HeartPulse' },
+    { service: 'Полиция', number: '102', icon: 'Shield' }
   ];
 
   return (
-    <div className="pt-20">
+    <>
+      <SEO
+        title="Контакты - Кисловодск КМВ: телефон, email, адрес, обратная связь"
+        description="Свяжитесь с нами: +7 (879) 371-00-00, info@kislovodsk-kmv.ru. Telegram/WhatsApp 24/7. Консультации по отдыху, бронированию, экскурсиям в Кисловодске и КМВ."
+        keywords="контакты Кисловодск, телефон туристического центра КМВ, заказ экскурсий Кисловодск, связаться курорт"
+      />
+      <div className="pt-20">
       <section className="relative py-32 bg-gradient-to-br from-primary to-secondary">
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="text-6xl mb-6">📞</div>
@@ -168,10 +175,10 @@ const ContactsPage = () => {
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span>Пн-Вс:</span>
-                      <span className="font-bold">09:00 - 20:00</span>
+                      <span className="font-bold">08:00 - 20:00</span>
                     </div>
                     <p className="text-sm text-white/90 mt-3">
-                      Прогулки и экскурсии проходят по предварительной записи
+                      Экскурсии и трансферы по предварительной записи
                     </p>
                   </div>
                 </CardContent>
@@ -246,7 +253,8 @@ const ContactsPage = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

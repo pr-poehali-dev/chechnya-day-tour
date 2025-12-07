@@ -4,42 +4,43 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
+import SEO from '@/components/SEO';
 
 const TransferPage = () => {
   const [passengers, setPassengers] = useState(2);
 
   const routes = [
     {
-      from: 'Терскол',
+      from: 'Кисловодск',
       to: 'Аэропорт Минеральные Воды',
-      distance: '182 км',
-      duration: '3 ч 15 мин',
+      distance: '45 км',
+      duration: '45 мин',
       prices: {
-        economy: 4500,
-        comfort: 6000,
-        minivan: 8500
+        economy: 2500,
+        comfort: 3500,
+        minivan: 5000
       }
     },
     {
-      from: 'Терскол',
+      from: 'Кисловодск',
       to: 'Пятигорск',
-      distance: '145 км',
-      duration: '2 ч 45 мин',
+      distance: '42 км',
+      duration: '50 мин',
       prices: {
-        economy: 3800,
-        comfort: 5000,
-        minivan: 7200
+        economy: 2200,
+        comfort: 3000,
+        minivan: 4500
       }
     },
     {
-      from: 'Терскол',
-      to: 'Нальчик',
-      distance: '135 км',
-      duration: '2 ч 30 мин',
+      from: 'Кисловодск',
+      to: 'Приэльбрусье',
+      distance: '180 км',
+      duration: '3 ч',
       prices: {
-        economy: 3500,
-        comfort: 4700,
-        minivan: 6800
+        economy: 6000,
+        comfort: 8000,
+        minivan: 11000
       }
     }
   ];
@@ -69,22 +70,28 @@ const TransferPage = () => {
   ];
 
   return (
-    <div className="pt-16 md:pt-20">
-      <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary to-secondary overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 text-9xl animate-pulse-slow">🚗</div>
-          <div className="absolute bottom-20 right-10 text-9xl animate-pulse-slow animation-delay-1000">🏔️</div>
-        </div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="text-5xl md:text-6xl mb-6 animate-scale-in">🚕</div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 animate-fade-in">
-            Трансфер на Эльбрус
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto animate-fade-in">
-            Комфортная доставка от аэропорта до курорта. Встречаем с табличкой, помогаем с багажом
-          </p>
-        </div>
-      </section>
+    <>
+      <SEO
+        title="Трансфер из аэропорта Минводы в Кисловодск - цены 2024, онлайн бронирование"
+        description="Надёжный трансфер Минеральные Воды - Кисловодск от 2500₽. Встреча с табличкой, комфортные авто, опытные водители. Онлайн-заказ трансфера по КМВ и в Приэльбрусье."
+        keywords="трансфер Минводы Кисловодск, такси аэропорт Минеральные Воды, трансфер КМВ, заказать трансфер Кисловодск"
+      />
+      <div className="pt-16 md:pt-20">
+        <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary to-secondary overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-20 left-10 text-9xl animate-pulse-slow">🚗</div>
+            <div className="absolute bottom-20 right-10 text-9xl animate-pulse-slow animation-delay-1000">🏔️</div>
+          </div>
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <div className="text-5xl md:text-6xl mb-6 animate-scale-in">🚕</div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 animate-fade-in">
+              Трансфер в Кисловодск
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto animate-fade-in">
+              Комфортная доставка из аэропорта Минеральные Воды. Встречаем с табличкой, помогаем с багажом
+            </p>
+          </div>
+        </section>
 
       <section className="py-12 md:py-16 bg-white dark:bg-background">
         <div className="container mx-auto px-4">
@@ -103,8 +110,8 @@ const TransferPage = () => {
                       >
                         <option>Аэропорт Минеральные Воды</option>
                         <option>Пятигорск</option>
-                        <option>Нальчик</option>
-                        <option>Кисловодск</option>
+                        <option>Ессентуки</option>
+                        <option>Железноводск</option>
                       </select>
                     </div>
 
@@ -114,9 +121,9 @@ const TransferPage = () => {
                         id="to"
                         className="w-full h-10 px-3 border rounded-md mt-1.5 bg-background"
                       >
-                        <option>Терскол, курорт Эльбрус</option>
-                        <option>Поляна Азау</option>
-                        <option>Чегет</option>
+                        <option>Кисловодск (центр)</option>
+                        <option>Кисловодск (Курортный парк)</option>
+                        <option>Приэльбрусье</option>
                       </select>
                     </div>
                   </div>
@@ -247,7 +254,8 @@ const TransferPage = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

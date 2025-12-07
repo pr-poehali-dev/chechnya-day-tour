@@ -4,18 +4,18 @@ import WeatherWidget from '@/components/WeatherWidget';
 
 const Footer = () => {
   const navLinks = [
-    { label: 'О курорте', path: '/about' },
+    { label: 'О Кисловодске', path: '/about' },
     { label: 'Чем заняться', path: '/activities' },
-    { label: 'Жилье', path: '/hotels' },
-    { label: 'Интересные факты', path: '/facts' },
-    { label: 'ТОП-5 мест', path: '/top-places' },
+    { label: 'Где остановиться', path: '/hotels' },
+    { label: 'Где поесть', path: '/restaurants' },
+    { label: 'Культура и досуг', path: '/culture' },
     { label: 'Контакты', path: '/contacts' }
   ];
 
   const socialLinks = [
-    { icon: 'Instagram', label: 'Instagram', url: '#' },
-    { icon: 'MessageCircle', label: 'Telegram', url: '#' },
-    { icon: 'Youtube', label: 'YouTube', url: '#' }
+    { icon: 'MessageCircle', label: 'Telegram', url: 'https://t.me/kislovodsk_kmv' },
+    { icon: 'Youtube', label: 'Дзен', url: '#' },
+    { icon: 'Instagram', label: 'VK', url: 'https://vk.com/kislovodsk' }
   ];
 
   return (
@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="mb-8">
           <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4 text-center">
-            Погода в Терсколе
+            Погода в Кисловодске
           </h3>
           <div className="max-w-md mx-auto">
             <WeatherWidget />
@@ -33,14 +33,14 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8 mt-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="text-3xl">⛰️</div>
+              <div className="text-3xl">🌳</div>
               <div>
-                <h3 className="text-xl font-bold text-primary">ЭЛЬБРУС</h3>
-                <p className="text-xs text-muted-foreground">Горный курорт</p>
+                <h3 className="text-xl font-bold text-primary">КИСЛОВОДСК</h3>
+                <p className="text-xs text-muted-foreground">Город-курорт</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              Высочайшая вершина Европы. Всесезонный горный курорт мирового уровня в самом сердце Кавказа.
+              Жемчужина Кавказских Минеральных Вод. Здравница с уникальным климатом, целебными нарзанами и знаменитым парком.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social, idx) => (
@@ -93,26 +93,26 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <Icon name="Phone" className="w-5 h-5 shrink-0 mt-0.5" />
-                <a href="tel:+78663887700" className="hover:text-primary transition-colors">
-                  +7 (866) 388-77-00
+                <a href="tel:+78793972345" className="hover:text-primary transition-colors">
+                  +7 (879) 397-23-45
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <Icon name="Mail" className="w-5 h-5 shrink-0 mt-0.5" />
-                <a href="mailto:info@elbrus-resort.ru" className="hover:text-primary transition-colors">
-                  info@elbrus-resort.ru
+                <a href="mailto:info@kislovodsk-kmv.ru" className="hover:text-primary transition-colors">
+                  info@kislovodsk-kmv.ru
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <Icon name="MapPin" className="w-5 h-5 shrink-0 mt-0.5" />
-                <span>Кабардино-Балкария, с. Терскол</span>
+                <span>Ставропольский край, г. Кисловодск</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t pt-8 text-center text-muted-foreground text-sm">
-          <p>© {new Date().getFullYear()} Курорт Эльбрус. Все права защищены.</p>
+          <p>© {new Date().getFullYear()} Отдых в Кисловодске. Все права защищены.</p>
           <p className="mt-2">
             <a href="#" className="hover:text-primary transition-colors">Политика конфиденциальности</a>
             {' · '}

@@ -23,8 +23,8 @@ const WeatherWidget = () => {
       try {
         setLoading(true);
         const API_KEY = 'af87df24c14b0c3e44ea1f8afa1d88d7';
-        const lat = 43.2585;
-        const lon = 42.5756;
+        const lat = 43.9034;
+        const lon = 42.7178;
         
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=ru&appid=${API_KEY}`
@@ -108,7 +108,7 @@ const WeatherWidget = () => {
           <div>
             <h3 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
               <Icon name="MapPin" className="w-4 h-4 text-primary" />
-              Эльбрус, Терскол
+              Кисловодск
             </h3>
             <p className="text-xs text-muted-foreground">Сейчас</p>
           </div>

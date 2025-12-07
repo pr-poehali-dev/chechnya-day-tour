@@ -28,7 +28,7 @@ const MobileMenu = () => {
       title: 'Основное',
       items: [
         { path: '/', label: 'Главная', icon: 'Home' },
-        { path: '/about', label: 'О курорте', icon: 'Info' },
+        { path: '/about', label: 'О Кисловодске', icon: 'Info' },
         { path: '/contacts', label: 'Контакты', icon: 'Phone' }
       ]
     },
@@ -37,24 +37,24 @@ const MobileMenu = () => {
       items: [
         { path: '/activities', label: 'Все активности', icon: 'Compass' },
         { path: '/activities/jeep-tours', label: 'Джип-туры', icon: 'Truck' },
+        { path: '/activities/bus-tours', label: 'Автобусные экскурсии', icon: 'Bus' },
         { path: '/activities/horse-riding', label: 'Конные прогулки', icon: 'Horse' },
         { path: '/activities/quad-bikes', label: 'Квадроциклы', icon: 'Bike' },
-        { path: '/activities/trekking', label: 'Треккинг', icon: 'Footprints' },
-        { path: '/top-places', label: 'ТОП-5 мест', icon: 'MapPin' },
-        { path: '/facts', label: 'Интересные факты', icon: 'Lightbulb' }
+        { path: '/activities/trekking', label: 'Треккинг', icon: 'Footprints' }
       ]
     },
     {
       title: 'Услуги',
       items: [
-        { path: '/hotels', label: 'Отели и жильё', icon: 'Hotel' },
-        { path: '/restaurants', label: 'Рестораны', icon: 'UtensilsCrossed' },
+        { path: '/hotels', label: 'Где остановиться', icon: 'Hotel' },
+        { path: '/restaurants', label: 'Где поесть', icon: 'UtensilsCrossed' },
         { path: '/transfer', label: 'Трансфер', icon: 'Car' }
       ]
     },
     {
-      title: 'Сообщество',
+      title: 'Культура',
       items: [
+        { path: '/culture', label: 'Музеи и театры', icon: 'Theater' },
         { path: '/gallery', label: 'Фотогалерея', icon: 'Image' },
         { path: '/reviews', label: 'Отзывы', icon: 'Star' }
       ]
@@ -86,8 +86,8 @@ const MobileMenu = () => {
         <div className="h-full flex flex-col">
           <div className="flex items-center justify-between p-4 border-b">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">⛰️</span>
-              <span className="font-bold text-lg">ЭЛЬБРУС</span>
+              <span className="text-2xl">🌳</span>
+              <span className="font-bold text-lg">КИСЛОВОДСК</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -130,9 +130,11 @@ const MobileMenu = () => {
               <span className="text-sm font-medium">Тема оформления</span>
               <ThemeToggle />
             </div>
-            <Button className="w-full bg-accent hover:bg-accent/90" size="lg">
-              <Icon name="Calendar" className="w-5 h-5 mr-2" />
-              Забронировать
+            <Button asChild className="w-full bg-accent hover:bg-accent/90" size="lg">
+              <Link to="/transfer">
+                <Icon name="Car" className="w-5 h-5 mr-2" />
+                Заказать трансфер
+              </Link>
             </Button>
           </div>
         </div>

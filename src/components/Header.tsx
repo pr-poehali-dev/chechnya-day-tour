@@ -18,12 +18,12 @@ const Header = () => {
 
   const navItems = [
     { path: '/', label: 'Главная' },
-    { path: '/about', label: 'О курорте' },
+    { path: '/about', label: 'О Кисловодске' },
     { path: '/activities', label: 'Чем заняться' },
     { path: '/hotels', label: 'Размещение' },
-    { path: '/restaurants', label: 'Рестораны' },
-    { path: '/transfer', label: 'Трансфер' },
-    { path: '/top-places', label: 'ТОП-5 мест' },
+    { path: '/restaurants', label: 'Где поесть' },
+    { path: '/culture', label: 'Культура' },
+    { path: '/gallery', label: 'Галерея' },
     { path: '/contacts', label: 'Контакты' }
   ];
 
@@ -38,21 +38,21 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <span className="text-3xl md:text-4xl">⛰️</span>
+            <span className="text-3xl md:text-4xl">🌳</span>
             <div>
               <h1
                 className={`text-xl md:text-2xl font-bold transition-colors ${
                   isScrolled ? 'text-foreground' : 'text-white'
                 }`}
               >
-                ЭЛЬБРУС
+                КИСЛОВОДСК
               </h1>
               <p
                 className={`text-xs transition-colors hidden sm:block ${
                   isScrolled ? 'text-muted-foreground' : 'text-white/90'
                 }`}
               >
-                Всесезонный горный курорт
+                Жемчужина Кавказских Минеральных Вод
               </p>
             </div>
           </Link>
@@ -79,8 +79,8 @@ const Header = () => {
             <div className="hidden lg:block">
               <ThemeToggle />
             </div>
-            <Button className="hidden md:flex bg-accent hover:bg-accent/90" size="sm">
-              Забронировать
+            <Button asChild className="hidden md:flex bg-accent hover:bg-accent/90" size="sm">
+              <Link to="/transfer">Трансфер</Link>
             </Button>
             <MobileMenu />
           </div>

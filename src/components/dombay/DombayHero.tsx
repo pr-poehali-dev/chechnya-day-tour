@@ -1,6 +1,38 @@
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
 
+function getNextTourDate() {
+  const now = new Date();
+  const day = now.getDay(); // 0=вс, 6=сб
+  const daysToSat = day === 6 ? 7 : (6 - day);
+  const next = new Date(now);
+  next.setDate(now.getDate() + daysToSat);
+  next.setHours(6, 0, 0, 0);
+  return next;
+}
+
+function useCountdown() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const tick = () => {
+      const diff = getNextTourDate().getTime() - Date.now();
+      if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return; }
+      setTimeLeft({
+        days:    Math.floor(diff / 86400000),
+        hours:   Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000)  / 60000),
+        seconds: Math.floor((diff % 60000)    / 1000),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return timeLeft;
+}
+
 const SLIDES = [
   {
     bg: 'https://cdn.poehali.dev/projects/67416aab-80dd-49a8-b3bb-c84961b6ace9/files/01b2c2e5-b67a-4f6b-ba23-5aa52daffffb.jpg',
@@ -26,6 +58,7 @@ const FACTS = [
 export default function DombayHero() {
   const [current, setCurrent] = useState(0);
   const [visible, setVisible] = useState(true);
+  const { days, hours, minutes, seconds } = useCountdown();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -96,6 +129,24 @@ export default function DombayHero() {
             Возвращение <span className="text-gold font-bold">20:00–21:00</span>. 
             Группы до 8 человек.
           </p>
+
+          {/* Таймер до ближайшего тура */}
+          <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-sm border border-gold/30 rounded-2xl px-5 py-3 mb-8">
+            <div className="flex items-center gap-1.5 text-gold">
+              <Icon name="Timer" size={16} />
+              <span className="text-xs font-semibold uppercase tracking-wider text-white/70">До ближайшего тура</span>
+            </div>
+            <div className="flex items-center gap-3">
+              {[{ v: days, l: 'дн' }, { v: hours, l: 'ч' }, { v: minutes, l: 'мин' }, { v: seconds, l: 'сек' }].map(({ v, l }) => (
+                <div key={l} className="flex flex-col items-center">
+                  <span className="text-2xl font-black text-gold tabular-nums leading-none">
+                    {String(v).padStart(2, '0')}
+                  </span>
+                  <span className="text-[10px] text-white/50 uppercase tracking-wide">{l}</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* Кнопка */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12">

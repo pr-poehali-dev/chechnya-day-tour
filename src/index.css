@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -15,34 +15,33 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 40% 15%;
 
-    /* Основные цвета курорта Кисловодск */
-    --primary: 142 65% 38%;
+    /* Jeep Tour Dombay — основные цвета */
+    --primary: 216 73% 13%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 200 85% 55%;
+    --secondary: 192 80% 40%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 120 15% 96%;
-    --muted-foreground: 120 10% 45%;
+    --muted: 216 20% 95%;
+    --muted-foreground: 216 15% 45%;
 
-    --accent: 38 92% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 38 85% 50%;
+    --accent-foreground: 216 73% 10%;
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 220 70% 32%;
+    --border: 216 20% 85%;
+    --input: 216 20% 85%;
+    --ring: 38 85% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Дополнительные цвета Кисловодск */
-    --park-green: 142 70% 35%;
-    --sky-blue: 200 85% 55%;
-    --sand-beige: 38 35% 75%;
-    --healing-water: 180 60% 50%;
-    --rose-pink: 340 65% 60%;
+    /* Кастомные переменные Dombay */
+    --deep-navy: #0b1a33;
+    --gold: #e6a817;
+    --teal: #0e7490;
+    --snow-white: #f8fafc;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -100,8 +99,8 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.8;
+    font-family: "Inter", sans-serif;
+    line-height: 1.7;
   }
 
   h1,
@@ -112,5 +111,49 @@
   h6 {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: #e6a817;
+  }
+  .bg-navy {
+    background-color: #0b1a33;
+  }
+  .bg-gold {
+    background-color: #e6a817;
+  }
+  .border-gold {
+    border-color: #e6a817;
+  }
+
+  .btn-gold {
+    @apply bg-[#E6A817] text-[#0B1A33] font-bold hover:bg-[#f0b520] transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .card-glass {
+    background: rgba(11, 26, 51, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(230, 168, 23, 0.2);
+  }
+
+  .section-dark {
+    background: linear-gradient(135deg, #0b1a33 0%, #0f2548 50%, #0e3060 100%);
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

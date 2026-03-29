@@ -81,10 +81,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				gold: '#FFD700',
-				turquoise: '#0EA5E9',
-				'islamic-green': '#138a5c',
-				'islamic-gold': '#D4AF37'
+				gold: '#E6A817',
+				'gold-light': '#f0b520',
+				navy: '#0B1A33',
+				'navy-light': '#0f2548',
+				teal: '#0E7490',
+				'snow-white': '#F8FAFC'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

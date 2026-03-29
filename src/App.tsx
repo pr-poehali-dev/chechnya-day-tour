@@ -22,6 +22,7 @@ import JeepToursPage from "@/pages/JeepToursPage";
 import HorseRidingPage from "@/pages/HorseRidingPage";
 import QuadBikesPage from "@/pages/QuadBikesPage";
 import TrekkingPage from "@/pages/TrekkingPage";
+import DombayTourPage from "@/pages/DombayTourPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,30 +33,38 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/activities" element={<ActivitiesPage />} />
-              <Route path="/activities/jeep-tours" element={<JeepToursPage />} />
-              <Route path="/activities/horse-riding" element={<HorseRidingPage />} />
-              <Route path="/activities/quad-bikes" element={<QuadBikesPage />} />
-              <Route path="/activities/trekking" element={<TrekkingPage />} />
-              <Route path="/hotels" element={<HotelsPage />} />
-              <Route path="/facts" element={<FactsPage />} />
-              <Route path="/top-places" element={<TopPlacesPage />} />
-              <Route path="/transfer" element={<TransferCalculatorPage />} />
-              <Route path="/restaurants" element={<RestaurantsPage />} />
-              <Route path="/gallery" element={<GalleryPage />} />
-              <Route path="/reviews" element={<ReviewsPage />} />
-              <Route path="/contacts" element={<ContactsPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <Routes>
+          {/* Отдельный сайт Jeep Tour Dombay — без общего хедера/футера КМВ */}
+          <Route path="/dombay-tur-kmv" element={<DombayTourPage />} />
+
+          {/* Основной сайт КМВ */}
+          <Route path="*" element={
+            <div className="min-h-screen flex flex-col">
+              <Header />
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/activities" element={<ActivitiesPage />} />
+                  <Route path="/activities/jeep-tours" element={<JeepToursPage />} />
+                  <Route path="/activities/horse-riding" element={<HorseRidingPage />} />
+                  <Route path="/activities/quad-bikes" element={<QuadBikesPage />} />
+                  <Route path="/activities/trekking" element={<TrekkingPage />} />
+                  <Route path="/hotels" element={<HotelsPage />} />
+                  <Route path="/facts" element={<FactsPage />} />
+                  <Route path="/top-places" element={<TopPlacesPage />} />
+                  <Route path="/transfer" element={<TransferCalculatorPage />} />
+                  <Route path="/restaurants" element={<RestaurantsPage />} />
+                  <Route path="/gallery" element={<GalleryPage />} />
+                  <Route path="/reviews" element={<ReviewsPage />} />
+                  <Route path="/contacts" element={<ContactsPage />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          } />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
